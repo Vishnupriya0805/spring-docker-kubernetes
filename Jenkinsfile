@@ -1,16 +1,22 @@
-pipeline{
-    environment {
-    registry = "vishnupriya0805@gmail.com/docker-test"
-    registryCredential = "dockerhub"
-}
-    agent any
-    stages {
-        stage('Build') {
-            steps{
-            echo 'building.....'
-             }
-        }
-        stage('Building image') {
+pipeline {
+  environment {
+    registry = "vishnupriya0805/docker-test"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/Vishnupriya0805/spring-docker-kubernetes.git'
+      }
+    }
+    stage('Build') {
+       steps {
+        echo 'building...'
+       }
+    }
+    stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -19,8 +25,8 @@ pipeline{
     }
     stage('Deploy Image') {
       steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
+         script {
+            docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
         }
