@@ -1,9 +1,12 @@
 pipeline{
     agent any
+     tools {
+            maven 'MAVEN'
+        }
     stages {
         stage('Build Maven') {
             steps{
-             echo 'building....'
+            bat "mvn -Dmaven.test.failure.ignore=true clean package"
              }
         }
     }
