@@ -6,7 +6,7 @@ pipeline {
   }
   agent{
   kubernetes {
-      label 'kubepod'
+      label 'jdkpod'
     }
   }
   stages {
