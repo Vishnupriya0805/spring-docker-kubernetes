@@ -6,7 +6,7 @@ pipeline {
   }
   agent{
   kubernetes {
-      inheritFrom 'kubepod'
+      label 'kubepod'
     }
   }
   stages {
