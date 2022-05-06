@@ -7,6 +7,7 @@ pipeline {
   agent{
   kubernetes {
       label 'jdkpod'
+      defaultContainer 'jdk'
     }
   }
   stages {
