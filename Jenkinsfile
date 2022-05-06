@@ -10,11 +10,6 @@ pipeline {
     }
   }
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/Vishnupriya0805/spring-docker-kubernetes.git'
-      }
-    }
     stage('Build') {
        steps {
         echo 'building...'
