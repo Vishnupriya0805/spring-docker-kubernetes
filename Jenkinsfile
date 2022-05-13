@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Build') {
        steps {
-        echo 'building...'
+         sh "mvn clean install"
        }
     }
     stage('Building image') {
